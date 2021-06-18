@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.user.mapper.UserMapper">
+    <!-- 批量新增用户 -->
+    <insert id="insertUser">
+        insert into study.user
+        (USER_NAME,USER_AGE,USER_SEX,USER_ADDR,USER_MOBILE) values
+        <foreach collection="param" item="item" index="index" separator=",">
+            (#{item.userName},#{item.userAge},#{item.userSex},#{item.userAddr},#{item.userMobile})
+        </foreach>
+    </insert>
+
+    <!-- 批量修改用户 -->
+    <update id="updateUser">
+        <!--批量修改-跟java循环其实是一样的只是逻辑清晰些-->
+            update study.user
+            <set>
+                <if test="item.userName != null and item.userName != ''">
+                    USER_NAME = #{item.updateName},
+                </if>
+                <if test="item.userAge != null and item.userAge != ''">
+                    USER_AGE = #{item.userAge},
+                </if>
+                UPDATE_TIME = SYSDATE()
+            </set>
+            where USER_NAME = #{item.userName}
+    </update>
+
+    <!-- 批量删除用户 -->
+    <delete id="deleteUser">
+        delete from study.user where USER_NAME in
+        <foreach collection="param" item="item" open="(" close=")" separator=",">
+            #{item.userName}
+        </foreach>
+    </delete>
+
+    <!-- 查询用户 -->
+    <select id="queryUser" resultType="com.study.user.pojo.vo.UserVo">
+        select USER_NAME,USER_AGE,USER_SEX,USER_ADDR,USER_MOBILE from study.user
+        <if test="param.userName != '' and param.userName != null">
+            where USER_NAME = #{param.userName}
+        </if>
+    </select>
+</mapper>
