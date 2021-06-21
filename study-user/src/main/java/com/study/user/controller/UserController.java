@@ -10,7 +10,10 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -28,6 +31,12 @@ public class UserController{
     @ApiOperation(value = "查询用户", notes = "查询用户")
     public PageUtils<UserVo> queryUser (@RequestBody @Valid UserDto userDto){
         return userService.queryUser(new Page<>(userDto.getPage(),userDto.getLimit()),userDto);
+    }
+
+    @PostMapping("/exportUserExcel")
+    @ApiOperation(value = "查询用户导出")
+    public void exportUserExcel (HttpServletResponse response,UserDto userDto) throws IOException {
+        userService.exportUserExcel(response,userDto);
     }
 
     @PostMapping("/insertUser")

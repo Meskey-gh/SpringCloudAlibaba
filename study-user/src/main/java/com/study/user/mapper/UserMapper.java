@@ -42,4 +42,6 @@ public interface UserMapper  extends BaseMapper<UserVo> {
      * @param userVo
      */
     void updateUser(@Param("param") UserVo userVo);
+
+    List<UserVo> queryUser2(@Param("param") UserDto userDto);
 }

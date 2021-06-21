@@ -42,4 +42,11 @@
             where USER_NAME = #{param.userName}
         </if>
     </select>
+    <!-- 查询用户 -->
+    <select id="queryUser2" resultType="com.study.user.pojo.vo.UserVo">
+        select USER_NAME,USER_AGE,USER_SEX,USER_ADDR,USER_MOBILE from study.user
+        <if test="param.userName != '' and param.userName != null">
+            where USER_NAME = #{param.userName}
+        </if>
+    </select>
 </mapper>
