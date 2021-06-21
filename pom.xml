@@ -12,6 +12,7 @@
         <module>study-user</module>
         <module>study-gateway</module>
         <module>study-common</module>
+        <module>study-minio</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->

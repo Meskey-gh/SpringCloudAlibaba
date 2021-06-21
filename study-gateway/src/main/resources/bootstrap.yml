@@ -22,3 +22,7 @@ spring:
           uri: lb://study-user                 #配置nacos里面的服务名
           predicates:
             - Path=/study-user/**         # 断言，路径相匹配的进行路由
+        - id: study-minio #payment_route
+          uri: lb://study-minio
+          predicates:
+            - Path=/study-minio/**

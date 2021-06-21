@@ -1,6 +1,6 @@
 package com.study.user.service.impl;
 
-import cn.humingfeng.dynamic.datasource.annotation.DS;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.study.core.api.PageUtils;
