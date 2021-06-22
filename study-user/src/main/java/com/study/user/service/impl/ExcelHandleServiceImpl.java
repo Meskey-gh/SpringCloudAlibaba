@@ -4,6 +4,7 @@ import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.study.core.api.ExcelUtils;
+import com.study.user.Listener.ExcelHandleListener;
 import com.study.user.mapper.ExcelHandleMapper;
 import com.study.user.mapper.UserMapper;
 import com.study.user.pojo.dto.UserDto;
@@ -26,8 +27,6 @@ import java.util.List;
 @Slf4j
 public class ExcelHandleServiceImpl extends ServiceImpl<UserMapper, UserVo> implements ExcelHandleService {
 
-    @Autowired
-    private ExcelHandleMapper excelHandleMapper;
 
 
     @Override
@@ -52,7 +51,7 @@ public class ExcelHandleServiceImpl extends ServiceImpl<UserMapper, UserVo> impl
     public void importExcel(MultipartFile file) throws IOException {
         List<UserVo> userVoList = EasyExcel.read(file.getInputStream())
                 // 注册监听器，可以在这里校验字段
-//                .registerReadListener(new CustomerDailyImportListener())
+                .registerReadListener(new ExcelHandleListener())
                 .head(UserVo.class)
                 // 设置sheet，默认读取第一个
                 .sheet()
@@ -63,6 +62,7 @@ public class ExcelHandleServiceImpl extends ServiceImpl<UserMapper, UserVo> impl
             return;
         }
 
+        baseMapper.deleteUser(userVoList);
         baseMapper.insertUser(userVoList);
 
     }

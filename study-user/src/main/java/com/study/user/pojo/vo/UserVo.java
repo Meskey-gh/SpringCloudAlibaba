@@ -3,6 +3,7 @@ package com.study.user.pojo.vo;
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author 刘祖鸿
@@ -39,6 +41,10 @@ public class UserVo implements Serializable{
     @ApiModelProperty(value = "手机号")
     @ExcelProperty(value = {"手机号"}, index = 4)
     private String userMobile;
+
+    @ExcelProperty(index = 5)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
 
     @ApiModelProperty(value = "修改用户名")
     @ExcelIgnore
