@@ -33,11 +33,6 @@ public class UserController{
         return userService.queryUser(new Page<>(userDto.getPage(),userDto.getLimit()),userDto);
     }
 
-    @PostMapping("/exportUserExcel")
-    @ApiOperation(value = "查询用户导出")
-    public void exportUserExcel (HttpServletResponse response,UserDto userDto) throws IOException {
-        userService.exportUserExcel(response,userDto);
-    }
 
     @PostMapping("/insertUser")
     @ApiOperation(value = "批量新增用户", notes = "批量新增用户")

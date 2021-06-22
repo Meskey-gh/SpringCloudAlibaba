@@ -18,7 +18,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "查询用户返回参数",description = "查询用户返回参数")
-public class UserVo extends BaseRowModel implements Serializable{
+public class UserVo implements Serializable{
 
     @ApiModelProperty(value = "用户名")
     @ExcelProperty(value = {"用户名"}, index = 0)

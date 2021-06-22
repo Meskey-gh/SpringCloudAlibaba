@@ -5,7 +5,6 @@ import com.study.core.api.PageUtils;
 import com.study.user.pojo.dto.UserDto;
 import com.study.user.pojo.vo.UserVo;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -41,12 +40,5 @@ public interface UserService {
      */
     void updateUser(UserVo userVo);
 
-    /**
-     * 导出查询用户信息
-//     * @param page
-     * @param response
-     * @param userDto
-     * @return
-     */
-    void exportUserExcel(HttpServletResponse response, UserDto userDto) throws IOException;
+
 }
