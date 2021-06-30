@@ -59,7 +59,8 @@ public class DateHandleApi {
          */
         LocalDateTime arrivalDate  = LocalDateTime.now();
         // 将时间格式成当前年-月-日 时-分-秒 字符串类型  landing: 2021-06-22 22:59:35
-        String landing = arrivalDate.format(DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss"));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String landing = arrivalDate.format(dtf);
 
         /**
          * java8 获取当前时间 时分秒纳秒 22:18:17.094 hour, minutes, seconds, nano seconds
